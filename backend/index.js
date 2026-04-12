@@ -1,10 +1,16 @@
-const express = require('express');
-const cors = require('cors');
 import { Groq } from 'groq-sdk';
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-const groq = new Groq();
+dotenv.config();
+
+const groq = new Groq({
+    apiKey : process.env.GROQ_API_KEY
+});
+
 const app = express();
-const port = 3001;
+const port = 3000;
 
 app.use(cors());
 app.use(express.json());
