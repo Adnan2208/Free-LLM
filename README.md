@@ -29,7 +29,7 @@ A Signup-free chat interface to chat with the latest large language models for f
 Create `frontend/.env` (or copy from `frontend/.env.example`) with:
 
 ```bash
-VITE_BACKEND_URL="/api"
+VITE_BACKEND_URL="/.netlify/functions/api"
 GROQ_API_KEY="your_groq_api_key"
 ```
 
@@ -51,10 +51,10 @@ GROQ_API_KEY="your_groq_api_key"
    - Functions directory: `netlify/functions`
 5. In Site Settings -> Environment Variables, add:
    - `GROQ_API_KEY` = your Groq API key
-   - Optional: `VITE_BACKEND_URL` = `/api`
+   - Optional: `VITE_BACKEND_URL` = `/.netlify/functions/api`
 6. Trigger deploy.
 
-After deployment, your frontend calls `/api/chat`, which is routed to Netlify Function `api`.
+After deployment, your frontend calls `/.netlify/functions/api`, which invokes Netlify Function `api` directly.
 
 ## Contributing
 Contributions are welcome! Feel free to open issues or submit pull requests.

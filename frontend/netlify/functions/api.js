@@ -17,12 +17,6 @@ const textHeaders = {
 };
 
 export const handler = async (event) => {
-  const rawPath = event.path || '/';
-  const path =
-    rawPath
-      .replace(/^\/.netlify\/functions\/api/, '')
-      .replace(/^\/api/, '') || '/';
-
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 204,
@@ -31,7 +25,7 @@ export const handler = async (event) => {
     };
   }
 
-  if (path === '/' && event.httpMethod === 'GET') {
+  if (event.httpMethod === 'GET') {
     return {
       statusCode: 200,
       headers: textHeaders,
@@ -39,7 +33,7 @@ export const handler = async (event) => {
     };
   }
 
-  if (path === '/chat' && event.httpMethod === 'POST') {
+  if (event.httpMethod === 'POST') {
     try {
       const payload = event.body ? JSON.parse(event.body) : {};
       const message = payload.message?.trim();
